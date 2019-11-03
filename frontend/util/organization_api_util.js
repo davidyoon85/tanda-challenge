@@ -30,3 +30,17 @@ export const updateOrganization = organization => {
     data: { organization }
   });
 };
+
+export const joinOrganization = organizationId => {
+  return $.ajax({
+    url: `/api/organizations/${organizationId}/join`,
+    method: "GET"
+  });
+};
+
+export const leaveOrganization = organizationId => {
+  return $.ajax({
+    url: `/api/organizations/${organizationId}/leave`,
+    method: "GET"
+  });
+};

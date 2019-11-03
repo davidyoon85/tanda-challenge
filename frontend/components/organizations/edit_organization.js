@@ -4,12 +4,14 @@ class EditOrganization extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       name: "",
       hourly_rate: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +29,12 @@ class EditOrganization extends Component {
     return e => {
       this.setState({ [field]: e.target.value });
     };
+  }
+
+  handleDelete() {
+    this.props
+      .deleteOrganization(this.state.id)
+      .then(() => this.props.history.push("/"));
   }
 
   handleSubmit(e) {
@@ -55,6 +63,9 @@ class EditOrganization extends Component {
             />
           </label>
           <button type="submit">Submit Changes</button>
+          <button type="button" onClick={this.handleDelete}>
+            Delete
+          </button>
         </form>
       </div>
     );

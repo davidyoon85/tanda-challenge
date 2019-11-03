@@ -45,6 +45,18 @@ class Api::OrganizationsController < ApplicationController
       end
     end
 
+    def join
+        @organization = Organization.find params[:id]
+        current_user.update_attribute(:organization_id, @organization.id)
+       render current_user
+      end
+      
+      def leave
+        @organization = Organization.find params[:id]
+        current_user.update_attribute(:organization_id, nil)
+        render current_user
+      end
+
     private
   
     def organization_params

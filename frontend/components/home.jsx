@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import {
   fetchOrganizations,
   createOrganization,
-  updateOrganization
+  updateOrganization,
+  joinOrganization,
+  leaveOrganization
 } from "../actions/organization_actions";
 import CreateOrganization from "./organizations/create_organization_container";
 
@@ -24,7 +26,8 @@ class Home extends Component {
 
   render() {
     let organizations = Object.values(this.props.state.entities.organizations);
-
+    let currentUser = Object.values(this.props.state.entities.users)[0];
+    debugger;
     return (
       <div>
         <h1>Organizations</h1>
@@ -40,7 +43,21 @@ class Home extends Component {
                 >
                   Edit
                 </span>
-                <span>Join</span>
+                {currentUser.organization_id ? (
+                  <span
+                    onClick={() =>
+                      this.props.leaveOrganization(organization.id)
+                    }
+                  >
+                    Leave
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => this.props.joinOrganization(organization.id)}
+                  >
+                    Join
+                  </span>
+                )}
               </li>
             ))}
         </ul>
@@ -62,7 +79,11 @@ const mapDispatchToProps = dispatch => {
     createOrganization: organization =>
       dispatch(createOrganization(organization)),
     updateOrganization: organization =>
-      dispatch(updateOrganization(organization))
+      dispatch(updateOrganization(organization)),
+    joinOrganization: organizationId =>
+      dispatch(joinOrganization(organizationId)),
+    leaveOrganization: organizationId =>
+      dispatch(leaveOrganization(organizationId))
   };
 };
 

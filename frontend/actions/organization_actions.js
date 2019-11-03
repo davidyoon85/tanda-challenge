@@ -1,4 +1,5 @@
 import * as APIUtil from "../util/organization_api_util";
+import { receiveCurrentUser } from "../actions/session_actions";
 
 export const RECEIVE_ORGANIZATIONS = "RECEIVE_ORGANIZATIONS";
 export const RECEIVE_ORGANIZATION = "RECEIVE_ORGANIZATION";
@@ -57,5 +58,20 @@ export const updateOrganization = organization => dispatch =>
 export const deleteOrganization = organizationId => dispatch =>
   APIUtil.deleteOrganization(organizationId).then(
     organization => dispatch(removeOrganization(organizationId)),
+    err => dispatch(receiveErrors(err.responseJSON))
+  );
+
+export const joinOrganization = organizationId => dispatch =>
+  APIUtil.joinOrganization(organizationId).then(
+    user => {
+      debugger;
+      return dispatch(receiveCurrentUser(user));
+    },
+    err => dispatch(receiveErrors(err.responseJSON))
+  );
+
+export const leaveOrganization = organizationId => dispatch =>
+  APIUtil.leaveOrganization(organizationId).then(
+    user => dispatch(receiveCurrentUser(user)),
     err => dispatch(receiveErrors(err.responseJSON))
   );
