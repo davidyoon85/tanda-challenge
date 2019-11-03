@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 
-class Signup extends Component {
+class Reset extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: "",
       email: "",
-      password: "",
-      password_confirmation: ""
+      password: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState(this.props.currentUser);
   }
 
   handleChange(type) {
@@ -22,16 +25,16 @@ class Signup extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.signup(this.state).then(() => this.props.history.push("/"));
+    this.props.updateUser(this.state);
   }
 
   render() {
     return (
       <div>
-        <h2>Sign up!</h2>
+        <h2>Update Your Account!</h2>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name:
+            Enter a New Name:
             <input
               type="text"
               value={this.state.name}
@@ -39,7 +42,7 @@ class Signup extends Component {
             />
           </label>
           <label>
-            Email:
+            Enter a New Email:
             <input
               type="text"
               value={this.state.email}
@@ -47,26 +50,18 @@ class Signup extends Component {
             />
           </label>
           <label>
-            Password:
+            Enter a New Password:
             <input
               type="password"
               value={this.state.password}
               onChange={this.handleChange("password")}
             />
           </label>
-          <label>
-            Confirm Password:
-            <input
-              type="password"
-              value={this.state.password_confirmation}
-              onChange={this.handleChange("password_confirmation")}
-            />
-          </label>
-          <button onClick={this.handleSubmit}>Sign up</button>
+          <button onClick={this.handleSubmit}>Save Changes!</button>
         </form>
       </div>
     );
   }
 }
 
-export default Signup;
+export default Reset;

@@ -1,7 +1,6 @@
 class Api::UsersController < ApplicationController
     def create
       @user = User.new(user_params)
-   
       if @user.save
         login(@user)
         render "api/users/show"
@@ -13,11 +12,21 @@ class Api::UsersController < ApplicationController
     def show
       @user
     end
+
+    def update
+      @user = User.find(params[:id])
+      debugger
+        if @user.update(user_params)
+          render :show, status: 200
+        else
+          render json: @user.errors.full_messages, status: 409
+        end
+    end
   
     private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
   end
   

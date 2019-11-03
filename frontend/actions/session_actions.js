@@ -35,5 +35,12 @@ export const login = user => dispatch =>
     err => dispatch(receiveErrors(err.responseJSON))
   );
 
+export const updateUser = user => dispatch => {
+  APIUtil.update(user).then(
+    user => dispatch(receiveCurrentUser(user)),
+    err => dispatch(receiveErrors(err.responseJSON))
+  );
+};
+
 export const logout = () => dispatch =>
   APIUtil.logout().then(user => dispatch(logoutCurrentUser()));

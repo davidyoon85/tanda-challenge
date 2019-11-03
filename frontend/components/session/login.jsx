@@ -5,10 +5,8 @@ class Signup extends Component {
     super(props);
 
     this.state = {
-      name: "",
       email: "",
-      password: "",
-      password_confirmation: ""
+      password: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,22 +20,14 @@ class Signup extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.signup(this.state).then(() => this.props.history.push("/"));
+    this.props.login(this.state).then(() => this.props.history.push("/"));
   }
 
   render() {
     return (
       <div>
-        <h2>Sign up!</h2>
+        <h2>Login!</h2>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              value={this.state.name}
-              onChange={this.handleChange("name")}
-            />
-          </label>
           <label>
             Email:
             <input
@@ -52,14 +42,6 @@ class Signup extends Component {
               type="password"
               value={this.state.password}
               onChange={this.handleChange("password")}
-            />
-          </label>
-          <label>
-            Confirm Password:
-            <input
-              type="password"
-              value={this.state.password_confirmation}
-              onChange={this.handleChange("password_confirmation")}
             />
           </label>
           <button onClick={this.handleSubmit}>Sign up</button>
