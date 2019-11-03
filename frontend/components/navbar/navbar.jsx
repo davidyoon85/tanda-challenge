@@ -1,14 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Nav = props => {
   return (
     <div>
+      <Link to={"/"}>Adnat</Link>
       {props.currentUser ? (
         <div className="dropdown">
           <div className="logo_container">
             <div className="dropdown_message">
               <ul className="dropdown_list">
                 <li>
+                  <span>Logged in as {props.currentUser.name}</span>
                   <button onClick={props.logout}>Log out</button>
                 </li>
                 <li>
