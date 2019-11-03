@@ -4,6 +4,7 @@ import Signup from "./session/signup_container";
 import Login from "./session/login_container";
 import Navbar from "./navbar/navbar_container";
 import Reset from "./session/update_container";
+import EditOrganization from "./organizations/edit_organization_container";
 import Home from "./home";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/reset" component={Reset} />
+          <Route exact path="/organizations/:id" component={EditOrganization} />
           <Route path="/" component={Home} />
         </Switch>
       </div>

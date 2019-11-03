@@ -6,10 +6,10 @@ const Nav = props => {
     <div>
       <Link to={"/"}>Adnat</Link>
       {props.currentUser ? (
-        <div className="dropdown">
-          <div className="logo_container">
-            <div className="dropdown_message">
-              <ul className="dropdown_list">
+        <div>
+          <div>
+            <div>
+              <ul>
                 <li>
                   <span>Logged in as {props.currentUser.name}</span>
                   <button onClick={props.logout}>Log out</button>
@@ -21,6 +21,12 @@ const Nav = props => {
                 </li>
               </ul>
             </div>
+            {!props.currentUser.organization_id && (
+              <div>
+                <p>You aren't a member of any organizations.</p>
+                <p>Join an existing one or create a new one.</p>
+              </div>
+            )}
           </div>
         </div>
       ) : (

@@ -25,15 +25,20 @@ export const receiveErrors = errors => ({
   errors
 });
 
-export const fetchOrganizations = () => dispatch =>
+export const fetchOrganizations = () => dispatch => {
   APIUtil.fetchOrganizations().then(
-    organizations => dispatch(receiveOrganizations(organizations)),
+    organizations => {
+      dispatch(receiveOrganizations(organizations));
+    },
     err => dispatch(receiveErrors(err.responseJSON))
   );
+};
 
 export const fetchOrganization = organizationId => dispatch =>
   APIUtil.fetchOrganization(organizationId).then(
-    organization => dispatch(receiveOrganization(organization)),
+    organization => {
+      dispatch(receiveOrganization(organization));
+    },
     err => dispatch(receiveErrors(err.responseJSON))
   );
 
