@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as moment from "moment";
 
 class Shifts extends Component {
   constructor(props) {
@@ -33,19 +34,28 @@ class Shifts extends Component {
   }
 
   render() {
-    debugger;
     return (
       <div>
         {this.props.shifts.length > 0 && (
           <ul>
-            {this.props.shifts.map(shift => (
-              <li>
-                {shift.user.name}
-                {shift.start}
-                {shift.finish}
-                {shift.break_length}
-              </li>
-            ))}
+            {this.props.shifts.map(shift => {
+              let shiftStart = new moment(shift.start);
+              let shiftEnd = new moment(shift.finish);
+              let breakTime = shift.break_length / 60;
+              let shiftDiff =
+                shiftEnd.diff(shiftStart, "hours", true) - breakTime;
+              debugger;
+              return (
+                <li key={shift.id}>
+                  {moment(shiftStart).format("MM/DD/YYYY")}
+
+                  {moment(shiftStart).format("h:mm A")}
+                  {moment(shiftEnd).format("h:mm A")}
+                  {shift.break_length}
+                  {shiftDiff}
+                </li>
+              );
+            })}
           </ul>
         )}
         <h2>Create Shift!</h2>

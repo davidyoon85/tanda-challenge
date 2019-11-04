@@ -4,6 +4,7 @@ import Shifts from "./shifts";
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    state,
     shifts: Object.values(state.entities.shifts).filter(
       obj => obj.organization_id === parseInt(ownProps.match.params.id)
     )
