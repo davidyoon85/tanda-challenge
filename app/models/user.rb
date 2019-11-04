@@ -26,10 +26,6 @@ class User < ApplicationRecord
       primary_key: :id,
       foreign_key: :user_id,
       class_name: :Shift
-
-    # belongs_to :organization,
-    #   foreign_key: :organization_id,
-    #   class_name: :Organization
   
     def self.find_by_credentials(email, password)
       user = User.find_by(email: email)

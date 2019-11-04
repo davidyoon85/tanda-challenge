@@ -67,7 +67,13 @@ class Home extends Component {
             <p>{userOrganization && userOrganization.name}</p>
             <div>
               <span>
-                <button>View Shifts</button>
+                <button
+                  onClick={() =>
+                    this.props.history.push(`/shifts/${userOrganization.id}`)
+                  }
+                >
+                  View Shifts
+                </button>
               </span>
               <span>
                 <button

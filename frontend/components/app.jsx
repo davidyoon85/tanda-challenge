@@ -6,6 +6,7 @@ import Login from "./session/login_container";
 import Navbar from "./navbar/navbar_container";
 import Reset from "./session/update_container";
 import EditOrganization from "./organizations/edit_organization_container";
+import Shifts from "./shifts/shifts_container";
 import Home from "./home";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
             path="/organizations/:id"
             component={EditOrganization}
           />
+          <ProtectedRoute exact path="/shifts/:id" component={Shifts} />
           <ProtectedRoute path="/" component={Home} />
         </Switch>
       </div>

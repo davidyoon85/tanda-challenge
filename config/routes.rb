@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         get 'leave'
       end
     end
-    resources :shifts, only: [:create, :update, :destroy]
+    resources :shifts, only: [:index, :create, :update, :destroy]
   end
   root "static_pages#root"
 end
