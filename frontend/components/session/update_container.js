@@ -4,7 +4,9 @@ import Reset from "./update";
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentUser: Object.values(state.entities.users)[0]
+    currentUser: Object.values(state.entities.users).filter(
+      obj => obj.id === state.session.id
+    )[0]
   };
 };
 

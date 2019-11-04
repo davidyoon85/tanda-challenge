@@ -49,7 +49,6 @@ class Shifts extends Component {
                 parseFloat(shiftDiff * shift.organization.hourly_rate).toFixed(
                   2
                 );
-              debugger;
 
               return (
                 <li key={shift.id}>

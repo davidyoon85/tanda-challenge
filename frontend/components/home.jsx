@@ -26,7 +26,9 @@ class Home extends Component {
 
   render() {
     let organizations = Object.values(this.props.state.entities.organizations);
-    let currentUser = Object.values(this.props.state.entities.users)[0];
+    let currentUser = Object.values(this.props.state.entities.users).filter(
+      obj => obj.id === this.props.state.session.id
+    )[0];
     let userOrganization = organizations.filter(
       obj => obj.id === currentUser.organization_id
     )[0];
