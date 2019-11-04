@@ -2,14 +2,16 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  organization_id :integer
-#  name            :string           not null
-#  email           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                     :integer          not null, primary key
+#  organization_id        :integer
+#  name                   :string           not null
+#  email                  :string           not null
+#  password_digest        :string           not null
+#  session_token          :string           not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  password_reset_token   :string
+#  password_reset_sent_at :datetime
 #
 
 class User < ApplicationRecord
@@ -52,6 +54,13 @@ class User < ApplicationRecord
       generate_unique_session_token
       save!
       self.session_token
+    end
+
+    def send_password_reset
+      self.password_reset_token = new_session_token
+      self.password_reset_sent_at = Time.zone.now
+      save!
+      UserMailer.password_reset(self).deliver
     end
   
     private

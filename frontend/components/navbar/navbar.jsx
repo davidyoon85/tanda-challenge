@@ -39,6 +39,11 @@ const Nav = props => {
           <li>
             <button onClick={() => props.history.push("/login")}>Log in</button>
           </li>
+          <li>
+            <button onClick={() => props.history.push("/forgot_password")}>
+              Forgot Password?
+            </button>
+          </li>
         </ul>
       )}
     </div>

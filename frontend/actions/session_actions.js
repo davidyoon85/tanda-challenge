@@ -42,5 +42,9 @@ export const updateUser = user => dispatch => {
   );
 };
 
+export const resetEmail = email => dispatch => APIUtil.resetEmail(email);
+
+export const resetPassword = data => dispatch => APIUtil.resetPassword(data);
+
 export const logout = () => dispatch =>
   APIUtil.logout().then(user => dispatch(logoutCurrentUser()));

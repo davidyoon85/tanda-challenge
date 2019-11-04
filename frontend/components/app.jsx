@@ -7,6 +7,8 @@ import Navbar from "./navbar/navbar_container";
 import Reset from "./session/update_container";
 import EditOrganization from "./organizations/edit_organization_container";
 import Shifts from "./shifts/shifts_container";
+import ForgotPassword from "./password/forgot_password_container";
+import ResetPassword from "./password/reset_password_container";
 import Home from "./home";
 
 const App = () => {
@@ -17,6 +19,8 @@ const App = () => {
         <Switch>
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/forgot_password" component={ForgotPassword} />
+          <Route exact path="/password_resets/:id" component={ResetPassword} />
           <ProtectedRoute exact path="/reset" component={Reset} />
           <ProtectedRoute
             exact

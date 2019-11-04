@@ -25,3 +25,20 @@ export const update = user => {
     data: { user }
   });
 };
+
+export const resetEmail = email => {
+  return $.ajax({
+    url: `/api/password_resets`,
+    method: "POST",
+    data: { email }
+  });
+};
+
+export const resetPassword = data => {
+  debugger;
+  return $.ajax({
+    url: `/api/password_resets/${data.tokenId}`,
+    method: "PUT",
+    data: { data }
+  });
+};
