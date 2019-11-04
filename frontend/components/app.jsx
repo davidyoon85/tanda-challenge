@@ -1,4 +1,5 @@
 import React from "react";
+import { ProtectedRoute } from "../util/route_util";
 import { Route, Switch } from "react-router-dom";
 import Signup from "./session/signup_container";
 import Login from "./session/login_container";
@@ -15,9 +16,13 @@ const App = () => {
         <Switch>
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/reset" component={Reset} />
-          <Route exact path="/organizations/:id" component={EditOrganization} />
-          <Route path="/" component={Home} />
+          <ProtectedRoute exact path="/reset" component={Reset} />
+          <ProtectedRoute
+            exact
+            path="/organizations/:id"
+            component={EditOrganization}
+          />
+          <ProtectedRoute path="/" component={Home} />
         </Switch>
       </div>
     </div>
