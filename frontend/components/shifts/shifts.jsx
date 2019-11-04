@@ -44,15 +44,22 @@ class Shifts extends Component {
               let breakTime = shift.break_length / 60;
               let shiftDiff =
                 shiftEnd.diff(shiftStart, "hours", true) - breakTime;
+              let shiftCost =
+                "$" +
+                parseFloat(shiftDiff * shift.organization.hourly_rate).toFixed(
+                  2
+                );
               debugger;
+
               return (
                 <li key={shift.id}>
+                  {shift.user.name}
                   {moment(shiftStart).format("MM/DD/YYYY")}
-
                   {moment(shiftStart).format("h:mm A")}
                   {moment(shiftEnd).format("h:mm A")}
                   {shift.break_length}
                   {shiftDiff}
+                  {shiftCost}
                 </li>
               );
             })}
