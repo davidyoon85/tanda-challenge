@@ -1,0 +1,43 @@
+// Place all the styles related to the password_resets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  font-size: 14px;
+}
+
+span {
+  padding-right: 15px;
+}
+
+label {
+  padding-right: 10px;
+}
+
+input {
+  text-align: center;
+}
+
+.shifts-table {
+  width: 80%;
+  min-width: 800px;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid black;
+}
+
+tr td:last-child {
+  border: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.home-link {
+  font-size: 2rem;
+}

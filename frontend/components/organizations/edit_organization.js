@@ -57,15 +57,19 @@ class EditOrganization extends Component {
   render() {
     return (
       <div>
-        <h2>hi</h2>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
-            <input value={this.state.name} onChange={this.update("name")} />
+            <input
+              required
+              value={this.state.name}
+              onChange={this.update("name")}
+            />
           </label>
           <label>
             Hourly Rate:
             <input
+              required
               value={this.state.hourly_rate}
               onChange={this.update("hourly_rate")}
             />

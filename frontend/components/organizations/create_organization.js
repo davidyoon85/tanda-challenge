@@ -31,6 +31,7 @@ class CreateOrganization extends Component {
           <label>
             Name:
             <input
+              required
               type="text"
               value={this.state.name}
               onChange={this.handleChange("name")}
@@ -39,12 +40,13 @@ class CreateOrganization extends Component {
           <label>
             Hourly Rate:
             <input
+              required
               type="number"
               value={this.state.hourly_rate}
               onChange={this.handleChange("hourly_rate")}
             />
           </label>
-          <button onClick={this.handleSubmit}>Create Organization</button>
+          <button type="submit">Create Organization</button>
         </form>
       </div>
     );

@@ -21,7 +21,6 @@ class ResetPassword extends Component {
     e.preventDefault();
     let password_reset_token = this.props.match.params.id;
     let data = { password: this.state.password, password_reset_token };
-    debugger;
     this.props.resetPassword(data).then(() => this.props.history.push("/"));
   }
 

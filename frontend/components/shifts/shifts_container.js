@@ -1,5 +1,9 @@
 import { connect } from "react-redux";
-import { fetchShifts, createShift } from "../../actions/shift_actions";
+import {
+  fetchShifts,
+  createShift,
+  deleteShift
+} from "../../actions/shift_actions";
 import Shifts from "./shifts";
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,7 +18,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchShifts: () => dispatch(fetchShifts()),
-    createShift: shift => dispatch(createShift(shift))
+    createShift: shift => dispatch(createShift(shift)),
+    deleteShift: id => dispatch(deleteShift(id))
   };
 };
 

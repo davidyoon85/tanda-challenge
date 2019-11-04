@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const Nav = props => {
   return (
     <div>
-      <Link to={"/"}>Adnat</Link>
+      <Link className="home-link" to={"/"}>
+        Adnat
+      </Link>
       {props.currentUser ? (
         <div>
           <div>

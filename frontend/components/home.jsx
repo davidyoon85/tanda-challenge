@@ -42,22 +42,26 @@ class Home extends Component {
               {organizations.length > 0 &&
                 organizations.map(organization => (
                   <li key={organization.id}>
-                    {organization.name}
-                    <span
-                      onClick={() =>
-                        this.props.history.push(
-                          `/organizations/${organization.id}`
-                        )
-                      }
-                    >
-                      Edit
+                    <span>{organization.name}</span>
+                    <span>
+                      <button
+                        onClick={() =>
+                          this.props.history.push(
+                            `/organizations/${organization.id}`
+                          )
+                        }
+                      >
+                        Edit
+                      </button>
                     </span>
-                    <span
-                      onClick={() =>
-                        this.props.joinOrganization(organization.id)
-                      }
-                    >
-                      Join
+                    <span>
+                      <button
+                        onClick={() =>
+                          this.props.joinOrganization(organization.id)
+                        }
+                      >
+                        Join
+                      </button>
                     </span>
                   </li>
                 ))}

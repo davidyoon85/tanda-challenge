@@ -35,7 +35,6 @@ export const resetEmail = email => {
 };
 
 export const resetPassword = data => {
-  debugger;
   return $.ajax({
     url: `/api/password_resets/${data.tokenId}`,
     method: "PUT",

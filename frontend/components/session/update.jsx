@@ -26,6 +26,7 @@ class Reset extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.updateUser(this.state);
+    this.props.history.push("/");
   }
 
   render() {
@@ -36,6 +37,8 @@ class Reset extends Component {
           <label>
             Enter a New Name:
             <input
+              required
+              minLength="1"
               type="text"
               value={this.state.name}
               onChange={this.handleChange("name")}
@@ -44,7 +47,9 @@ class Reset extends Component {
           <label>
             Enter a New Email:
             <input
-              type="text"
+              required
+              minLength="1"
+              type="email"
               value={this.state.email}
               onChange={this.handleChange("email")}
             />
@@ -52,12 +57,14 @@ class Reset extends Component {
           <label>
             Enter a New Password:
             <input
+              required
+              minLength="6"
               type="password"
               value={this.state.password}
               onChange={this.handleChange("password")}
             />
           </label>
-          <button onClick={this.handleSubmit}>Save Changes!</button>
+          <button type="submit">Save Changes</button>
         </form>
       </div>
     );

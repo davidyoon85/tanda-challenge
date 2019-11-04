@@ -54,6 +54,9 @@ class Api::OrganizationsController < ApplicationController
       def leave
         @organization = Organization.find params[:id]
         current_user.update_attribute(:organization_id, nil)
+        userShifts = Shift.where(:user_id => current_user.id)
+        userShifts.destroy_all
+
         render current_user
       end
 

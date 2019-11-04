@@ -10,3 +10,10 @@ export const createShift = shift =>
     url: "/api/shifts",
     data: { shift }
   });
+
+export const deleteShift = id =>
+  $.ajax({
+    method: "DELETE",
+    url: `/api/shifts/${id}`,
+    data: { id }
+  });

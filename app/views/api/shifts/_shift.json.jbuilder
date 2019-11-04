@@ -6,6 +6,6 @@ json.set! shift.id do
     end
 
     json.organization do
-      json.extract! shift.organization, :hourly_rate
+      json.extract! shift.organization, :name, :hourly_rate
     end
 end

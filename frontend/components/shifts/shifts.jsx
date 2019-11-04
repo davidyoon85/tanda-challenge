@@ -6,6 +6,7 @@ class Shifts extends Component {
     super(props);
 
     this.state = {
+      date: "",
       start: "",
       finish: "",
       break_length: ""
@@ -25,50 +26,90 @@ class Shifts extends Component {
     };
   }
 
+  handleDelete(id) {
+    this.props.deleteShift(id);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     let organization_id = parseInt(this.props.match.params.id);
     let user_id = this.props.state.session.id;
-    let newShift = { ...this.state, organization_id, user_id };
+    let start = this.state.date + " " + this.state.start;
+    let finish = this.state.date + " " + this.state.finish;
+    let newShift = { ...this.state, start, finish, organization_id, user_id };
     this.props.createShift(newShift);
   }
 
+  renderTableData() {
+    return this.props.shifts
+      .sort((a, b) => a - b)
+      .map((shift, idx) => {
+        let shiftStart = new moment(shift.start);
+        let shiftEnd = new moment(shift.finish);
+        let breakTime = shift.break_length / 60;
+        let shiftDiff = shiftEnd.diff(shiftStart, "hours", true) - breakTime;
+        let shiftCost =
+          "$" +
+          parseFloat(shiftDiff * shift.organization.hourly_rate).toFixed(2);
+
+        return (
+          <tr key={idx}>
+            <td>{shift.user.name}</td>
+            <td>{moment(shiftStart).format("MM/DD/YYYY")}</td>
+            <td>{moment(shiftStart).format("h:mm A")}</td>
+            <td>{moment(shiftEnd).format("h:mm A")}</td>
+            <td>{shift.break_length}</td>
+            <td>{shiftDiff}</td>
+            <td>{shiftCost}</td>
+            <td>
+              <button onClick={() => this.handleDelete(shift.id)}>
+                Delete
+              </button>
+            </td>
+          </tr>
+        );
+      });
+  }
+
   render() {
+    debugger;
     return (
       <div>
         {this.props.shifts.length > 0 && (
-          <ul>
-            {this.props.shifts.map(shift => {
-              let shiftStart = new moment(shift.start);
-              let shiftEnd = new moment(shift.finish);
-              let breakTime = shift.break_length / 60;
-              let shiftDiff =
-                shiftEnd.diff(shiftStart, "hours", true) - breakTime;
-              let shiftCost =
-                "$" +
-                parseFloat(shiftDiff * shift.organization.hourly_rate).toFixed(
-                  2
-                );
-
-              return (
-                <li key={shift.id}>
-                  {shift.user.name}
-                  {moment(shiftStart).format("MM/DD/YYYY")}
-                  {moment(shiftStart).format("h:mm A")}
-                  {moment(shiftEnd).format("h:mm A")}
-                  {shift.break_length}
-                  {shiftDiff}
-                  {shiftCost}
-                </li>
-              );
-            })}
-          </ul>
+          <div>
+            <h2>{this.props.shifts[0].organization.name}</h2>
+            <h2>Shifts</h2>
+            <table className="shifts-table">
+              <tbody>
+                <tr>
+                  <th>Employee Name</th>
+                  <th>Shift Date</th>
+                  <th>Start Time</th>
+                  <th>Finish Time</th>
+                  <th>Break Length (minutes)</th>
+                  <th>Hours Worked</th>
+                  <th>Shift Cost</th>
+                </tr>
+                {this.renderTableData()}
+              </tbody>
+            </table>
+          </div>
         )}
-        <h2>Create Shift!</h2>
+        <h2>Create Shift</h2>
         <form onSubmit={this.handleSubmit}>
+          <label>
+            Date:
+            <input
+              required
+              type="date"
+              value={this.state.date}
+              onChange={this.handleChange("date")}
+            />
+          </label>
           <label>
             Start:
             <input
+              required
               type="time"
               value={this.state.start}
               onChange={this.handleChange("start")}
@@ -77,6 +118,7 @@ class Shifts extends Component {
           <label>
             Finish:
             <input
+              required
               type="time"
               value={this.state.finish}
               onChange={this.handleChange("finish")}
@@ -85,12 +127,13 @@ class Shifts extends Component {
           <label>
             Break Length:
             <input
+              required
               type="number"
               value={this.state.break_length}
               onChange={this.handleChange("break_length")}
             />
           </label>
-          <button onClick={this.handleSubmit}>Create Shift</button>
+          <button type="submit">Create Shift</button>
         </form>
       </div>
     );

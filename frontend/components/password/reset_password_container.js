@@ -4,7 +4,6 @@ import { resetPassword } from "../../actions/session_actions";
 import ResetPassword from "./reset_password";
 
 const mapDispatchToProps = dispatch => {
-  debugger;
   return {
     resetPassword: id => dispatch(resetPassword(id))
   };

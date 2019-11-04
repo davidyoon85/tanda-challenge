@@ -33,6 +33,7 @@ class Signup extends Component {
           <label>
             Name:
             <input
+              required
               type="text"
               value={this.state.name}
               onChange={this.handleChange("name")}
@@ -41,7 +42,8 @@ class Signup extends Component {
           <label>
             Email:
             <input
-              type="text"
+              required
+              type="email"
               value={this.state.email}
               onChange={this.handleChange("email")}
             />
@@ -49,6 +51,7 @@ class Signup extends Component {
           <label>
             Password:
             <input
+              required
               type="password"
               value={this.state.password}
               onChange={this.handleChange("password")}
@@ -57,6 +60,7 @@ class Signup extends Component {
           <label>
             Confirm Password:
             <input
+              required
               type="password"
               value={this.state.password_confirmation}
               onChange={this.handleChange("password_confirmation")}
