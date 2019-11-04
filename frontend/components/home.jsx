@@ -27,7 +27,6 @@ class Home extends Component {
   render() {
     let organizations = Object.values(this.props.state.entities.organizations);
     let currentUser = Object.values(this.props.state.entities.users)[0];
-    debugger;
     return (
       <div>
         <h1>Organizations</h1>

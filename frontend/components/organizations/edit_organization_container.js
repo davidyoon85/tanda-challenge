@@ -7,8 +7,8 @@ import {
 import EditOrganization from "./edit_organization";
 import { withRouter } from "react-router";
 
-const mapStateToProps = state => ({
-  organization: Object.values(state.entities.organizations)[0]
+const mapStateToProps = (state, ownProps) => ({
+  organization: state.entities.organizations[ownProps.match.params.id]
 });
 
 const mapDispatchToProps = dispatch => ({

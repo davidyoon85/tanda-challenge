@@ -64,7 +64,6 @@ export const deleteOrganization = organizationId => dispatch =>
 export const joinOrganization = organizationId => dispatch =>
   APIUtil.joinOrganization(organizationId).then(
     user => {
-      debugger;
       return dispatch(receiveCurrentUser(user));
     },
     err => dispatch(receiveErrors(err.responseJSON))

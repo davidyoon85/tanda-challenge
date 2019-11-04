@@ -25,6 +25,14 @@ class EditOrganization extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.setState({
+      id: "",
+      name: "",
+      hourly_rate: ""
+    });
+  }
+
   update(field) {
     return e => {
       this.setState({ [field]: e.target.value });
