@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import {
   fetchOrganizations,
@@ -27,41 +27,72 @@ class Home extends Component {
   render() {
     let organizations = Object.values(this.props.state.entities.organizations);
     let currentUser = Object.values(this.props.state.entities.users)[0];
+    let userOrganization = organizations.filter(
+      obj => obj.id === currentUser.organization_id
+    )[0];
+
     return (
-      <div>
-        <h1>Organizations</h1>
-        <ul>
-          {organizations.length > 0 &&
-            organizations.map(organization => (
-              <li key={organization.id}>
-                {organization.name}
-                <span
+      <Fragment>
+        {!currentUser.organization_id ? (
+          <div>
+            <h1>Organizations</h1>
+            <ul>
+              {organizations.length > 0 &&
+                organizations.map(organization => (
+                  <li key={organization.id}>
+                    {organization.name}
+                    <span
+                      onClick={() =>
+                        this.props.history.push(
+                          `/organizations/${organization.id}`
+                        )
+                      }
+                    >
+                      Edit
+                    </span>
+                    <span
+                      onClick={() =>
+                        this.props.joinOrganization(organization.id)
+                      }
+                    >
+                      Join
+                    </span>
+                  </li>
+                ))}
+            </ul>
+            <CreateOrganization />
+          </div>
+        ) : (
+          <div>
+            <p>{userOrganization && userOrganization.name}</p>
+            <div>
+              <span>
+                <button>View Shifts</button>
+              </span>
+              <span>
+                <button
                   onClick={() =>
-                    this.props.history.push(`/organizations/${organization.id}`)
+                    this.props.history.push(
+                      `/organizations/${userOrganization.id}`
+                    )
                   }
                 >
                   Edit
-                </span>
-                {currentUser.organization_id ? (
-                  <span
-                    onClick={() =>
-                      this.props.leaveOrganization(organization.id)
-                    }
-                  >
-                    Leave
-                  </span>
-                ) : (
-                  <span
-                    onClick={() => this.props.joinOrganization(organization.id)}
-                  >
-                    Join
-                  </span>
-                )}
-              </li>
-            ))}
-        </ul>
-        <CreateOrganization />
-      </div>
+                </button>
+              </span>
+              <span>
+                <button
+                  onClick={() =>
+                    this.props.leaveOrganization(userOrganization.id)
+                  }
+                >
+                  Leave
+                </button>
+              </span>
+            </div>
+          </div>
+        )}
+      </Fragment>
     );
   }
 }
