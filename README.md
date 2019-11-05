@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Tanda Coding Challenge
 
-Things you may want to cover:
+Technologies used: React, Redux, Ruby on Rails, PostgreSQL, HTML and CSS/SCSS.
 
-* Ruby version
+## Instructions
 
-* System dependencies
+1. Clone repo
 
-* Configuration
+2. Run the following commands: bundle install & npm install
 
-* Database creation
+3. Run the rails server: rails server
 
-* Database initialization
+4. Run webpack: npm run webpack
 
-* How to run the test suite
+5. View app: http://localhost:3000/
 
-* Services (job queues, cache servers, search engines, etc.)
+## Notes
 
-* Deployment instructions
-
-* ...
+* When requesting password reset email, look in your spam folder.
