@@ -52,6 +52,7 @@ class Signup extends Component {
             Password:
             <input
               required
+              minLength="6"
               type="password"
               value={this.state.password}
               onChange={this.handleChange("password")}
@@ -61,12 +62,13 @@ class Signup extends Component {
             Confirm Password:
             <input
               required
+              minLength="6"
               type="password"
               value={this.state.password_confirmation}
               onChange={this.handleChange("password_confirmation")}
             />
           </label>
-          <button onClick={this.handleSubmit}>Sign up</button>
+          <button type="submit">Sign up</button>
         </form>
       </div>
     );

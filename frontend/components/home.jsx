@@ -70,7 +70,9 @@ class Home extends Component {
           </div>
         ) : (
           <div>
-            <p>{userOrganization && userOrganization.name}</p>
+            <p className="organization-name">
+              {userOrganization && userOrganization.name}
+            </p>
             <div>
               <span>
                 <button

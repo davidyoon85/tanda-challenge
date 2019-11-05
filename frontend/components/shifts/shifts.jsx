@@ -42,7 +42,7 @@ class Shifts extends Component {
 
   renderTableData() {
     return this.props.shifts
-      .sort((a, b) => a - b)
+      .sort((a, b) => new Date(b.start) - new Date(a.start))
       .map((shift, idx) => {
         let shiftStart = new moment(shift.start);
         let shiftEnd = new moment(shift.finish);
@@ -72,7 +72,6 @@ class Shifts extends Component {
   }
 
   render() {
-    debugger;
     return (
       <div>
         {this.props.shifts.length > 0 && (
