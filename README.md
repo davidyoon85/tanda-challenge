@@ -12,7 +12,7 @@ Technologies used: React, Redux, Ruby on Rails, PostgreSQL, HTML and CSS/SCSS.
 
 3. Run the rails server: rails server
 
-4. Run webpack: npm run webpack
+4. Run webpack: npm run webpack (must run concurrently with rails server)
 
 5. View app: http://localhost:3000/
 
